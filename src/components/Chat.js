@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import * as firebase from "firebase";
 
+
+
+var config = {
+    apiKey: "AIzaSyBDU3xAqFKKvXEK214v2jHWQqiUmtyDvsw",
+    authDomain: "chat-app-6dd10.firebaseapp.com",
+    databaseURL: "https://chat-app-6dd10.firebaseio.com",
+    projectId: "chat-app-6dd10",
+    storageBucket: "chat-app-6dd10.appspot.com",
+    messagingSenderId: "340553487629"
+  };
+  firebase.initializeApp(config);
 
 class Chat extends Component {
+
+
+
 
 constructor(props,context){
 
@@ -11,22 +26,25 @@ constructor(props,context){
 	this.state={
   message: ' ',
 		messages:[
+    {id:0,text:'first message'}
 		]
 	}
 }
 
   componentDidMount(){
 	console.log('componentDidMount')
-     firebase.database().ref("messages/").on('value',(snapshot)=>{
-    const currentMessage = snapshot.val() 
-   if (currentMessage!=null) {
+     firebase.database().ref('messages/').on('value', (snapshot)=>{
+    const currentMessage  = snapshot.val()
+   if (currentMessage != null) {
          this.setState({
-         	// console.log('works fine')
+   
 	      messages:currentMessage
          })
       }
    })
 }
+
+
 
 update(event){
 	console.log('update :'+event.target.value)
@@ -40,15 +58,18 @@ update(event){
 submit(event){
 	console.log('Submit message :  '+this.state.message)
 	const postMessage={
-		id:this.state.message.length,
+		id:this.state.messages.length,
 		text:this.state.message
 	}
-var list=Object.assign([],this.state.messages)
 
-list.push(postMessage)
-this.setState({
-	messages:list
-})
+
+    firebase.database().ref('messages/'+postMessage.id).set(postMessage)
+// var list=Object.assign([],this.state.messages)
+ 
+// list.push(postMessage)
+// this.setState({
+// 	messages:list
+// })
 
 }
 
@@ -63,14 +84,14 @@ render(){
 
     return (
       <div >
-      <ol>
+      <ul>
       {currentMessage}
       
-      </ol>
-          <h2>this is chat components</h2>
+      </ul>
+          
           <input onChange={this.update} type="text" placeholder="Message"/>
           <br />
-          <button onClick={this.submit}>Submit Message</button>
+          <button onClick={this.submit}>Post</button>
            </ div >
        
       

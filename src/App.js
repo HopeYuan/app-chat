@@ -8,13 +8,10 @@ class App extends Component {
     return (
       <div className="App">
         
-          <h2>Welcome to hahah React</h2>
+          <h2>Welcome to chat app</h2>
           <Chat />
         </div>
-       
-      
     );
   }
 }
-
 export default App;
