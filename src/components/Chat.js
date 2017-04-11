@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as firebase from "firebase";
 
 
-
 var config = {
     apiKey: "AIzaSyBDU3xAqFKKvXEK214v2jHWQqiUmtyDvsw",
     authDomain: "chat-app-6dd10.firebaseapp.com",
@@ -83,15 +82,16 @@ render(){
 
 
     return (
-      <div >
+      <div className="panel panel-default post" >
+      chat app
       <ul>
       {currentMessage}
       
       </ul>
           
-          <input onChange={this.update} type="text" placeholder="Message"/>
+          <input className="post-input" onChange={this.update} type="text" placeholder="Message"/>
           <br />
-          <button onClick={this.submit}>Post</button>
+          <button className="post-button" onClick={this.submit}>Post</button>
            </ div >
        
       

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import 'jquery';
 import Chat  from './components/Chat';
 
 class App extends Component {

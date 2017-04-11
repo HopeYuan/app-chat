@@ -22,3 +22,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.post{
+  margin :0 20%;
+}
+.post-button{
+  float: right;
+margin-top: lem;
+ color: green;
+ font-size: large;
+}
+
+.post-input{
+  font-size: large;
+}
