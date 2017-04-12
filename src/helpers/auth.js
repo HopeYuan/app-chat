@@ -1,4 +1,7 @@
-export function export function auth (email, pw) {
+import { ref, firebaseAuth } from '../config/firebasecf'
+
+
+ export function auth (email, pw) {
   return firebaseAuth().createUserWithEmailAndPassword(email, pw)
    
 }
@@ -10,3 +13,4 @@ export function logout () {
 export function login (email, pw) {
   return firebaseAuth().signInWithEmailAndPassword(email, pw)
 }
+

@@ -1,8 +1,6 @@
- import firebase from 'firebase'
+import firebase from 'firebase'
 
-
-
- var config = {
+var config = {
     apiKey: "AIzaSyBDU3xAqFKKvXEK214v2jHWQqiUmtyDvsw",
     authDomain: "chat-app-6dd10.firebaseapp.com",
     databaseURL: "https://chat-app-6dd10.firebaseio.com",
@@ -13,4 +11,5 @@
   firebase.initializeApp(config);
 
 
-  
+export const ref = firebase.database().ref()
+export const firebaseAuth = firebase.auth
