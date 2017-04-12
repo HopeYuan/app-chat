@@ -24,7 +24,7 @@ export default class Login extends Component {
     return (
       <div >
           <h1>Login</h1>
-         <form >
+         <form onSubmit={this.submitlogin}>
          <div>
          <label>Email</label>
           <input className="form-control" placeholder="Email" ref={(email)=>this.email=email}/>
