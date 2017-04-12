@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-
 import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
-
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 
 import { logout } from '../helpers/auth'
-import { firebaseAuth } from '../helpers/auth'
+import { firebaseAuth } from '../config/firebasecf'
 
 
 
@@ -26,10 +24,10 @@ function PublicRoute ({component: Component, authed, ...rest}) {
 export default class App extends Component {
   state = {
     authed: false,
-    
+
   }
-   componentDidMount(){
-   this.removelistener = firebaseAuth().onAuthStateChanged((user) => {
+  componentDidMount () {
+    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           authed: true,
@@ -42,12 +40,10 @@ export default class App extends Component {
         })
       }
     })
-}
-
-componentWillUnmout(){
-    this.removelistener()
   }
-  
+  componentWillUnmount () {
+    this.removeListener()
+  }
   render() {
     return  (
       <BrowserRouter>
@@ -63,12 +59,18 @@ componentWillUnmout(){
                 </li>
                 
                 <li>
-                 <Link to="/login" className="navbar-brand">Login</Link>
+                  {this.state.authed
+                    ? <button
+                        style={{border: 'none', background: 'transparent'}}
+                        onClick={() => {
+                          logout()
+                        }}
+                        className="navbar-brand">Logout</button>
+                    : <span>
+                        <Link to="/login" className="navbar-brand">Login</Link>
+                        <Link to="/register" className="navbar-brand">Register</Link>
+                      </span>}
                 </li>
-                <li>
-                   <Link to="/register" className="navbar-brand">Register</Link>
-                </li>
-                
               </ul>
             </div>
           </nav>
@@ -78,7 +80,7 @@ componentWillUnmout(){
                 <Route path='/' exact component={Home} />
                 <PublicRoute authed={this.state.authed} path='/login' component={Login} />
                 <PublicRoute authed={this.state.authed} path='/register' component={Register} />
-                 <Route render={() => <h3>Please input valid route!</h3>} />
+                 <Route component={Home}/>
               </Switch>
             </div>
           </div>
