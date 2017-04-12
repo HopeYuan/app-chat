@@ -79,9 +79,10 @@ render() {
 
 
     return (
+    
       <div className="panel panel-default post" >
-      
-      <ul>
+       <pre>        You can chat in this page</pre>
+      <ul >
       {messages}
       
       </ul>

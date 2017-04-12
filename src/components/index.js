@@ -8,6 +8,7 @@ import Register from './Register'
 import Home from './Home'
 
 import { logout } from '../helpers/auth'
+import { firebaseAuth } from '../helpers/auth'
 
 
 
@@ -26,6 +27,25 @@ export default class App extends Component {
   state = {
     authed: false,
     
+  }
+   componentDidMount(){
+   this.removelistener = firebaseAuth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true,
+          
+        })
+      } else {
+        this.setState({
+          authed: false,
+         
+        })
+      }
+    })
+}
+
+componentWillUnmout(){
+    this.removelistener()
   }
   
   render() {
