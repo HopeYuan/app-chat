@@ -30,7 +30,7 @@ export default class Register extends Component {
           <input className="form-control" type="Password" ref={(pw)=>this.pw=pw}/>
          </div>
 
-  <button type="submit" className="btn btn-primary" >Register</button>
+  <button type="submit" className="post-button" >Register</button>
   </form>
 
       </div>

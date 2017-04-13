@@ -10,15 +10,18 @@ body {
 margin-top: 1 lem;
  color: green;
  font-size: large;
+margin-top:20px
 }
 
 .post-input{
   font-size: large;
 
-  margin-left: 20 px;
+  margin-left:30px;
+
 
   padding-left: 20px;
 
+margin-bottom:10px;
  
 
 }

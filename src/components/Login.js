@@ -36,7 +36,7 @@ export default class Login extends Component {
           <input className="form-control" type="Password" ref={(pw)=>this.pw=pw}/>
          </div>
 
-  <button type="submit" className="btn btn-primary" >Login</button>
+  <button type="submit" className="post-button" >Login</button>
   </form>
 
       </div>
